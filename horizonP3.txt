@@ -1,3 +1,5 @@
+/*Solution of 4.1.*/
+
 #include <iostream>
 #include <conio.h>
 #include <math.h>
@@ -8,11 +10,11 @@ int main()
     double T;
     cout<<"Enter the value of T:";
     cin>>T;
-    cout>>"Enter the intial conditions:";
+    cout>>"Enter the intial conditions:";/*Checks for different initial conditions*/
     cin>>x;
     for(; t<T; t+=0.01)
     {
-        x+=sin(x*t)*(0.01);
+        x+=sin(x*t)*(0.01);/*Solves by Eulers Method*/
     }
     cout<<"The value of x(T)="<<x;
     return 0;
