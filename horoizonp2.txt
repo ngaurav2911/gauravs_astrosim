@@ -8,7 +8,7 @@ class CelestialBody
     string name;
     double mass, density, radius;
 };
-class Planet : public CelestialBody
+class Planet : public CelestialBody/*Creates the class planet which inherits from class celestialbody*/
 {
     public:
     double orb_radius, no_sat;
@@ -31,23 +31,23 @@ class Planet : public CelestialBody
         cout<<"Enter the atmospheric pressure of the planet(in barr):";
         cin>>atmos_press;
     };
-    double EV()
+    double EV()/*Calculates the escape velocity*/
     {
         esc_v=sqrt(6.67*pow(10, -11)*mass/radius);
         return esc_v;
     };
-    double OV()
+    double OV()/*Calculates the orbital velocity*/
     {
         orb_v=sqrt(6.67*pow(10, -11)*mass/orb_radius);
         return orb_v;
     };
-    double G()
+    double G()/*Calculates the acceleration due to gravity*/
     {
         g=6.67*pow(10, -11)*mass/radius*radius;
         return g;
     };
 };
-class Star : public CelestialBody
+class Star : public CelestialBody/*Creates the class star which inherits from class celestialbody*/
 {
     public:
     double luminosity, surf_temp;
@@ -72,7 +72,7 @@ class Star : public CelestialBody
         cout<<"Enter the type of star:";
         cin>>star_type;
     };
-    double WL()
+    double WL()/*Calculates the wavelngth of the star*/
     {
         wavelength=(2.8977*pow(10, -3))/surf_temp;
         return wavelength;
@@ -81,9 +81,7 @@ class Star : public CelestialBody
 int main()
 {
     int n, n1, i;
-     do
-    {
-        cout<<"Enter:"<<endl<<"1 for planet:"<<endl<<"2 for star:"<<endl<<"or any other number to exit.";
+        cout<<"Enter:"<<endl<<"1 for planet:"<<endl<<"2 for star:";
         cin>>n;
         if(n==1)
         {
@@ -133,12 +131,5 @@ int main()
                 }
             }while(n==1);
         }
-        else
-        {
-            system("CLS");
-            cout<<"Invalid input.";
-            break;
-        }
-    }while(n==1||n==2);
     return 0;
 }
