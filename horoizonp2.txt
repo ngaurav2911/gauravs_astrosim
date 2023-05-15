@@ -1,0 +1,144 @@
+#include <iostream>
+#include<math.h> 
+using namespace std;
+#include<stdlib.h>
+class CelestialBody
+{
+    public:
+    string name;
+    double mass, density, radius;
+};
+class Planet : public CelestialBody
+{
+    public:
+    double orb_radius, no_sat;
+    double atmos_press;
+    double esc_v, g, orb_v;
+    void input()
+    {
+        cout<<"Enter the name of the planet:";
+        cin>>name;
+        cout<<"Enter the radius of the planet(in metres):";
+        cin>>radius;
+        cout<<"Enter the mass of the planet(in kgs):";
+        cin>>mass;
+        cout<<"Enter the density of the planet(in kgs/m3):";
+        cin>>density;
+        cout<<"Enter the orbital radius of the planet(in m):";
+        cin>>orb_radius;
+        cout<<"Enter the number of sattellites of the planet:";
+        cin>>no_sat;
+        cout<<"Enter the atmospheric pressure of the planet(in barr):";
+        cin>>atmos_press;
+    };
+    double EV()
+    {
+        esc_v=sqrt(6.67*pow(10, -11)*mass/radius);
+        return esc_v;
+    };
+    double OV()
+    {
+        orb_v=sqrt(6.67*pow(10, -11)*mass/orb_radius);
+        return orb_v;
+    };
+    double G()
+    {
+        g=6.67*pow(10, -11)*mass/radius*radius;
+        return g;
+    };
+};
+class Star : public CelestialBody
+{
+    public:
+    double luminosity, surf_temp;
+    string star_type, constellation;
+    double wavelength;
+    void input()
+    {
+        cout<<"Enter the name of the star:";
+        cin>>name;
+        cout<<"Enter the constellation in which the star is present in:";
+        cin>>constellation;
+        cout<<"Enter the radius of the star(in metres):";
+        cin>>radius;
+        cout<<"Enter the mass of the star(in kgs):";
+        cin>>mass;
+        cout<<"Enter the density of the star(in kgs/m3):";
+        cin>>density;
+        cout<<"Enter the luminosity of the star(in cd):";
+        cin>>luminosity;
+        cout<<"Enter the surface temperature of the star(in K):";
+        cin>>surf_temp;
+        cout<<"Enter the type of star:";
+        cin>>star_type;
+    };
+    double WL()
+    {
+        wavelength=(2.8977*pow(10, -3))/surf_temp;
+        return wavelength;
+    };
+};
+int main()
+{
+    int n, n1, i;
+     do
+    {
+        cout<<"Enter:"<<endl<<"1 for planet:"<<endl<<"2 for star:"<<endl<<"or any other number to exit.";
+        cin>>n;
+        if(n==1)
+        {
+            Planet P1;
+            P1.input();
+            do
+            {
+                cout<<"To calculate enter:"<<endl<<"1 for escape velocity:"<<endl<<"2 for orbital velocity:"<<endl<<"3 for acceleration due to gravity:"<<endl<<"or any other number to exit.";
+                cin>>n1;
+                if(n1==1)
+                {
+                    cout<<"The escape velocity for this planet is "<<P1.EV();
+                }
+                else if(n1==2)
+                {
+                    cout<<"The orbital velocity for this planet is "<<P1.OV();
+                }
+                else if(n1==3)
+                {
+                    cout<<"The acceleration due to gravity for this planet is "<<P1.G();
+                }
+                else
+                {
+                    system("CLS");
+                    cout<<"Invalid input.";
+                    break;
+                }
+            }while(n1==1||n1==2||n1==3);
+        }
+        else if(n==2)
+        {
+            Star S1;
+            S1.input();
+            do
+            {
+                cout<<"To calculate wavelength enter 1 or any other number to exit:";
+                cin>>n1;
+                if(n1==1)
+                {
+                    cout<<"The wavelenght emmitted by this star is "<<S1.WL();
+                }
+                else
+                {
+                    system("CLS");
+                    cout<<"Invalid input.";
+                    break;
+                }
+            }while(n==1);
+        }
+        else
+        {
+            system("CLS");
+            cout<<"Invalid input.";
+            break;
+        }
+    }while(n==1||n==2);
+    return 0;
+}

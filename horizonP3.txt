@@ -1,0 +1,25 @@
+#include <iostream>
+#include <conio.h>
+#include <math.h>
+using namespace std;
+int main()
+{
+    double x, t=0;
+    double T;
+    cout<<"Enter the value of T:";
+    cin>>T;
+    cout>>"Enter the intial conditions:";
+    cin>>x;
+    for(; t<T; t+=0.01)
+    {
+        x+=sin(x*t)*(0.01);
+    }
+    cout<<"The value of x(T)="<<x;
+    return 0;
+}
+
+
+
+
+
+
