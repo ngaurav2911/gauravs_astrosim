@@ -1,0 +1,47 @@
+#include<iostream> 
+#include<math.h> 
+using namespace std; 
+
+double* calc(double m1, double m2, double r1[], double r2[])/*Creates a function that inputs mass and postion of the bodies*/
+{
+    double force, rmod, r21[3];
+    for(int i=0; i<3; i++) 
+    { 
+        r21[i]=r2[i]-r1[i]; 
+    } 
+    static double F[3];
+    rmod=sqrt((r21[0]*r21[0])+(r21[1]*r21[1])+(r21[2]*r21[2])); /*Uses newtons formula for calculations*/
+    force=((m1*m2)*6.674)/((rmod*rmod)*pow(10, -11)); 
+    for(int i=0; i<3; i++) 
+    { 
+        F[i]=(force*r21[i])/rmod; 
+    } 
+    return F;
+}
+
+
+int main() 
+{ 
+    double m1, m2; 
+    double r1[3], r2[3]; 
+    cout<<"Enter the mass of object 1 (in kgs):"; 
+    cin>>m1; 
+    cout<<"Enter the mass of object 2 (in kgs):"; 
+    cin>>m2; 
+    cout<<"Enter the centre of mass of object 1 (in metres with reference to origin):"; 
+    for(int i=0; i<3; i++) 
+    { 
+        cin>>r1[i]; 
+    } 
+    cout<<"Enter the centre of mass of object 2 (in metres with reference to origin):"; 
+    for(int i=0; i<3; i++) 
+    { 
+        cin>>r2[i]; 
+    } 
+    double* F;
+    F=calc(m1, m2, r1, r2);/*Passes the values to the function*/
+    cout<<"Fx="<<F[0]<<endl;
+    cout<<"Fy="<<F[1]<<endl;
+    cout<<"Fz="<<F[2];
+    return 0; 
+}
